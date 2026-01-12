@@ -8,6 +8,10 @@ TriTech Mind
 - Gasangwa Teta Duice
 - Ndahiro Prince
 
+## Project Description 
+This application processes MoMo SMS messages provided in the XML format. The sytsem extracts, cleans, categorizes and stores data transactions in a relational database. This application will help users understand their mobile money activity. 
+
+
 ## System Architecture
 The high level system architecture illustrates how data flows from MoMo SMS XML files through a backend ETL pipeline into a database and finally to a frontend dashboard for visualization.
 
