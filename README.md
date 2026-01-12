@@ -1,4 +1,4 @@
-### MoMo SMS Data Project
+# MoMo SMS Data Project
 
 ## Team name
 TriTech Mind
@@ -21,7 +21,7 @@ Our team uses Agile scrum board to track tasks and collaboration throughout the 
 https://github.com/users/KamiPacifique/projects/2/views/1
 
 ## Project Status
-# Phase 1: Planning & Setup (current)
+## Phase 1: Planning & Setup (current)
 . Repository created and collaborators added
 . Architecture diagram designed
 . Scrum board initialized 
