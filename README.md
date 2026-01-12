@@ -22,8 +22,8 @@ https://github.com/users/KamiPacifique/projects/2/views/1
 
 ## Project Status
 ## Phase 1: Planning & Setup (current)
-. Repository created and collaborators added
-. Architecture diagram designed
-. Scrum board initialized 
+- Repository created and collaborators added
+- Architecture diagram designed
+- Scrum board initialized 
 
 in coming phases we will focus on backend development, data processing, and frontend components. The directory structure will evolve as development progresses.
