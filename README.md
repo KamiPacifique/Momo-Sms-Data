@@ -1,7 +1,7 @@
 # MoMo SMS Data Project
 
 ## Team name
-TriTech Mind
+TriTech Minds
 
 ## Authors
 - Kami Pacifique
