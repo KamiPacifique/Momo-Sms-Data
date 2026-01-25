@@ -2,102 +2,319 @@
   "users": [
     {
         "user_id": 1,
-        "phone_number": "0788123456",
-        "id_number": "1234567890123456",
-        "full_name": "Alice Mukamana",
-        "registration_date": "2025-12-01T10:00:00Z",
+        "phone_number": "+250788312567",
+        "id_number": "119980183047290",
+        "full_name": "Arsene Hirwa",
+        "registration_date": "2025-09-10 10:15:00",
         "status": "ACTIVE",
-        "created_at": "2026-01-10T09:15:00Z"
+        "created_at": "2025-09-10 10:15:00"
     },
     {
       "user_id": 2,
-      "full_name": "Jean Mukeshimana",
-      "phone_number": "0722334455",
-      "email": "jMukeshimana@yahoo.com",
-      "created_at": "2026-01-12T14:30:00Z"
+      "full_name":"Vanesa Rusengwa",
+      "phone_number": "+250784031874",
+      "id_number": "1200570326821437",
+      "registration_date": "2025-10-20 09:45:00",
+      "status": "SUSPENDED", 
+      "created_at": "2025-10-20 09:45:00"
+    },
+    {
+      "user_id": 3,
+      "full_name":"Christa Ishimwe",
+      "phone_number": "+250791324921",
+      "id_number": "1200270514904172",
+      "registration_date": "2025-11-02 11:20:00",
+      "status": "ACTIVE", 
+      "created_at": "22025-11-02 11:20:00"
+    },
+    {
+      "user_id": 4,
+      "full_name":"Ank Micha",
+      "phone_number": "+250793252350",
+      "id_number": "1200070226340695",
+      "registration_date": "2026-08-12 12:00:00",
+      "status": "ACTIVE", 
+      "created_at": "2026-08-12 12:00:00"
+    },
+    {
+      "user_id": 5,
+      "full_name":"Axel Iragaba",
+      "phone_number": "+250790558929",
+      "id_number": "1200380438625309",
+      "registration_date": "2025-12-15 08:00:00",
+      "status": "DEACTIVATED", 
+      "created_at": "2025-12-15 08:00:00"
+    },
+    {
+      "user_id": 6,
+      "full_name":"Abigael Kagabo",
+      "phone_number": "+250794223408",
+      "id_number": "1199880870122456",
+      "registration_date": "2026-01-02 07:00:00",
+      "status": "ACTIVE", 
+      "created_at": "2026-01-02 07:00:00"
     }
   ],
 
   "transaction_categories": [
     {
       "category_id": 1,
-      "name": "Mobile Money Transfer",
-      "description": "Sending and receiving money via mobile platforms"
+      "name": "CASH-OUT",
+      "description": "Withdraw money from MoMo account"
     },
     {
       "category_id": 2,
-      "name": "Bill Payment",
-      "description": "Utility and service payments"
+      "name": "DEPOSIT",
+      "description": "Deposit money into MoMo account"
+    },
+    {
+      "category_id": 3,
+      "name":"SEND_MONEY",
+      "description":"Transfer money to another MoMo user"
+    },
+    {
+        "category_id": 4,
+        "name":"AIRTIME_TOPUP",
+        "description":"Purchase mobile airtime"
+    },
+    {
+        "category_id": 5,
+        "name":"INTERNATIONAL_TRANSFER",
+        "description":"Cross border money transfer"
+    },
+    {
+        "category_id": 6,
+        "name":"MERCHANT",
+        "description":"Payment to registered merchant"
     }
   ],
-
+ "transactions": [
+    {
+      "transaction_id": 1,
+      "sender_id": 1,
+      "receiver_id": 2,
+      "category_id": 3,
+      "amount": 6000.00,
+      "currency": "RWF",
+      "transaction_type": "P2P_TRANSFER",
+      "transaction_status": "SUCCESS",
+      "created_at": "2026-01-10T14:30:00"
+    },
+    {
+      "transaction_id": 2,
+      "sender_id": 2,
+      "receiver_id": 3,
+      "category_id": 1,
+      "amount": 30000.00,
+      "currency": "RWF",
+      "transaction_type": "CASH_OUT",
+      "transaction_status": "SUCCESS",
+      "created_at": "2025-12-20T10:20:00"
+    },
+    {
+      "transaction_id": 3,
+      "sender_id": 3,
+      "receiver_id": null,
+      "category_id": 5,
+      "amount": 10000.00,
+      "currency": "RWF",
+      "transaction_type": "BILL_PAYMENT",
+      "transaction_status": "FAILED",
+      "created_at": "2026-01-13T08:20:00"
+    },
+    {
+      "transaction_id": 4,
+      "sender_id": 4,
+      "receiver_id": 5,
+      "category_id": 3,
+      "amount": 85000.00,
+      "currency": "RWF",
+      "transaction_type": "P2P_TRANSFER",
+      "transaction_status": "PENDING",
+      "created_at": "2026-01-20T12:00:00"
+    },
+    {
+      "transaction_id": 5,
+      "sender_id": 5,
+      "receiver_id": 1,
+      "category_id": 4,
+      "amount": 1000.00,
+      "currency": "RWF",
+      "transaction_type": "AIRTIME",
+      "transaction_status": "SUCCESS",
+      "created_at": "2026-01-22T09:00:00"
+    },
+    {
+      "transaction_id": 6,
+      "sender_id": 6,
+      "receiver_id": 4,
+      "category_id": 7,
+      "amount": 40000.00,
+      "currency": "RWF",
+      "transaction_type": "MERCHANT_PAY",
+      "transaction_status": "SUCCESS",
+      "created_at": "2026-01-18T10:00:00"
+    },
+    {
+      "transaction_id": 7,
+      "sender_id": 1,
+      "receiver_id": 3,
+      "category_id": 7,
+      "amount": 20000.00,
+      "currency": "RWF",
+      "transaction_type": "MERCHANT_PAY",
+      "transaction_status": "FAILED",
+      "created_at": "2026-01-19T11:00:00"
+    },
+    {
+      "transaction_id": 8,
+      "sender_id": 2,
+      "receiver_id": null,
+      "category_id": 1,
+      "amount": 60000.00,
+      "currency": "RWF",
+      "transaction_type": "CASH_OUT",
+      "transaction_status": "REVERSED",
+      "created_at": "2026-01-20T15:20:00"
+    }
+  ],
+  
   "tags": [
     {
       "tag_id": 1,
-      "name": "school"
+      "tag_name": "FRAUD_SUSPECTED",
+      "description": "Transaction flagged for fraud review"
     },
     {
       "tag_id": 2,
-      "name": "urgent"
+      "tag_name": "HIGH_VALUE",
+      "description": "Transaction above threshold amount"
     },
     {
       "tag_id": 3,
-      "name": "family"
+      "tag_name": "RECURRING",
+      "description": "Regular repeating transaction"
+    },
+    {
+      "tag_id": 4,
+      "tag_name": "URGENT",
+      "description": "Time-sensitive transaction"
+    },
+    {
+      "tag_id": 5,
+      "tag_name": "INTERNATIONAL",
+      "description": "Cross-border transaction"
+    },
+    {
+      "tag_id": 6,
+      "tag_name": "BUSINESS",
+      "description": "Commercial transaction"
+    },
+    {
+      "tag_id": 7,
+      "tag_name": "PERSONAL",
+      "description": "Personal transaction"
     }
   ],
-
-  "transactions": [
+  "transaction_tags": [
     {
-      "transaction_id": 1001,
-      "amount": 15000.00,
-      "currency": "RWF",
-      "status": "SUCCESS",
-      "transaction_date": "2025-01-20T11:45:00Z",
-
-      "sender": {
-        "user_id": 1,
-        "full_name": "Alice Mukamana",
-        "phone_number": "0788123456"
-      },
-
-      "receiver": {
-        "user_id": 2,
-        "full_name": "Jean Uwimana",
-        "phone_number": "0722334455"
-      },
-
-      "category": {
-        "category_id": 1,
-        "name": "Mobile Money Transfer"
-      },
-
-      "tags": [
-        {
-          "tag_id": 2,
-          "name": "urgent"
-        },
-        {
-          "tag_id": 3,
-          "name": "family"
-        }
-      ]
+      "transaction_id": 1,
+      "tag_id": 7
+    },
+    {
+      "transaction_id": 2,
+      "tag_id": 7
+    },
+    {
+      "transaction_id": 3,
+      "tag_id": 1
+    },
+    {
+      "transaction_id": 4,
+      "tag_id": 2
+    },
+    {
+      "transaction_id": 5,
+      "tag_id": 7
+    },
+    {
+      "transaction_id": 6,
+      "tag_id": 6
+    },
+    {
+      "transaction_id": 7,
+      "tag_id": 1
+    },
+    {
+      "transaction_id": 8,
+      "tag_id": 2
     }
   ],
 
   "system_logs": [
     {
-      "log_id": 5001,
-      "transaction_id": 1001,
-      "event_type": "VALIDATION",
-      "message": "Transaction validated successfully",
-      "created_at": "2025-01-20T11:44:58Z"
+      "log_id": 1,
+      "transaction_id": 1,
+      "action": "PROCESS",
+      "log_time": "2026-01-09T09:30:05",
+      "status_message": "Transaction initiated successfully"
     },
     {
-      "log_id": 5002,
-      "transaction_id": 1001,
-      "event_type": "PROCESSING",
-      "message": "Funds transferred from sender to receiver",
-      "created_at": "2025-01-20T11:45:00Z"
+      "log_id": 2,
+      "transaction_id": 1,
+      "action": "COMPLETE",
+      "log_time": "2026-01-10T09:30:15",
+      "status_message": "Transaction processed successfully"
+    },
+    {
+      "log_id": 3,
+      "transaction_id": 2,
+      "action": "PROCESS",
+      "log_time": "2026-01-17T10:15:10",
+      "status_message": "Cash out request received"
+    },
+    {
+      "log_id": 4,
+      "transaction_id": 2,
+      "action": "COMPLETE",
+      "log_time": "2026-01-18T10:15:25",
+      "status_message": "Cash out completed at agent location"
+    },
+    {
+      "log_id": 5,
+      "transaction_id": 4,
+      "action": "PROCESS",
+      "log_time": "2026-01-18T12:30:05",
+      "status_message": "Transfer initiated - pending receiver confirmation"
+    },
+    {
+      "log_id": 6,
+      "transaction_id": 6,
+      "action": "VALIDATE",
+      "log_time": "2026-01-19T15:20:10",
+      "status_message": "Fraud check failed - transaction blocked"
+    },
+    {
+      "log_id": 7,
+      "transaction_id": 6,
+      "action": "REJECT",
+      "log_time": "2026-01-20T15:20:30",
+      "status_message": "Transaction rejected due to security concerns"
+    },
+    {
+      "log_id": 8,
+      "transaction_id": 7,
+      "action": "PROCESS",
+      "log_time": "2026-01-22T16:10:05",
+      "status_message": "Cash out initiated"
+    },
+    {
+      "log_id": 9,
+      "transaction_id": 7,
+      "action": "REVERSE",
+      "log_time": "2026-01-23T16:10:45",
+      "status_message": "Transaction reversed - agent error"
     }
   ]
 }
+
