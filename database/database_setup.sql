@@ -75,3 +75,13 @@ CREATE TABLE system_logs (
         FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id)
         ON DELETE SET NULL ON UPDATE CASCADE
 );
+
+
+-- CREATE INDEXES
+CREATE INDEX idx_transactions_sender_date ON transactions (sender_id, created_at);
+CREATE INDEX idx_transactions_receiver_date ON transactions (receiver_id, created_at);
+CREATE INDEX idx_transactions_category ON transactions (category_id);
+CREATE INDEX idx_transactions_status_date ON transactions (transaction_status, created_at);
+CREATE INDEX idx_transaction_tags_tag ON transaction_tags (tag_id, transaction_id);
+CREATE INDEX idx_system_logs_txn_time ON system_logs (transaction_id, log_time);
+
