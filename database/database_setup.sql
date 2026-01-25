@@ -85,3 +85,14 @@ CREATE INDEX idx_transactions_status_date ON transactions (transaction_status, c
 CREATE INDEX idx_transaction_tags_tag ON transaction_tags (tag_id, transaction_id);
 CREATE INDEX idx_system_logs_txn_time ON system_logs (transaction_id, log_time);
 
+
+-- SECURITY & DATA VALIDATION CONSTRAINTS
+
+ALTER TABLE users ADD CONSTRAINT unique_id_number UNIQUE (id_number);
+ALTER TABLE transaction_categories ADD CONSTRAINT unique_category_name UNIQUE (category_name);
+ALTER TABLE users ADD CONSTRAINT chk_phone_format CHECK (phone_number REGEXP '^\\+250[0-9]{9}$');
+ALTER TABLE users ADD CONSTRAINT chk_id_number_format CHECK (id_number REGEXP '^[0-9]{16}$');
+ALTER TABLE users ADD CONSTRAINT chk_user_status CHECK (status IN ('ACTIVE', 'INACTIVE', 'SUSPENDED', 'PENDING_VERIFICATION'));
+ALTER TABLE transactions ADD CONSTRAINT chk_amount_positive CHECK (amount > 0);
+ALTER TABLE transactions ADD CONSTRAINT chk_transaction_type CHECK (transaction_type IN ('P2P_TRANSFER', 'CASH_OUT', 'BILL_PAYMENT', 'AIRTIME', 'MERCHANT_PAY', 'DEPOSIT'));
+ALTER TABLE transactions ADD CONSTRAINT chk_amount_limit CHECK (amount <= 10000000);
