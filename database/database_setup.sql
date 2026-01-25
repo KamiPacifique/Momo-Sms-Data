@@ -162,3 +162,82 @@ INSERT INTO system_logs (transaction_id, action, log_time, status_message) VALUE
 (7, 'FAILED', '2025-01-19 11:01:00', 'Transaction declined by merchant'),
 (8, 'REQUEST', '2025-01-20 15:20:05', 'Cash out request received'),
 (8, 'REVERSED', '2025-01-20 15:21:00', 'Transaction reversed - duplicate request');
+
+SELECT 'DATABASE SETUP VERIFICATION' AS '';
+SELECT '============================' AS '';
+SELECT 'Component' AS 'Table Name', 'Records' AS 'Row Count' FROM DUAL
+UNION ALL
+SELECT 'Users', CAST(COUNT(*) AS CHAR) FROM users
+UNION ALL
+SELECT 'Transactions', CAST(COUNT(*) AS CHAR) FROM transactions
+UNION ALL
+SELECT 'Transaction Categories', CAST(COUNT(*) AS CHAR) FROM transaction_categories
+UNION ALL
+SELECT 'Tags', CAST(COUNT(*) AS CHAR) FROM tags
+UNION ALL
+SELECT 'Transaction Tags', CAST(COUNT(*) AS CHAR) FROM transaction_tags
+UNION ALL
+SELECT 'System Logs', CAST(COUNT(*) AS CHAR) FROM system_logs;
+
+
+SELECT 'SECURITY CONSTRAINT VALIDATION' AS '';
+SELECT '===============================' AS '';
+SELECT 'Constraint Rule' AS 'Rule', 'Test Result' AS 'Status' FROM DUAL
+UNION ALL
+SELECT 'Phone Number Format (+250XXXXXXXXX)',
+    CASE WHEN COUNT(*) = 0 THEN 'PASS' ELSE 'FAIL' END
+FROM users WHERE phone_number NOT REGEXP '^\\+250[0-9]{9}$'
+UNION ALL
+SELECT 'ID Number Format (16 digits)',
+    CASE WHEN COUNT(*) = 0 THEN 'PASS' ELSE 'FAIL' END
+FROM users WHERE id_number NOT REGEXP '^[0-9]{16}$'
+UNION ALL
+SELECT 'Unique National ID Numbers',
+    CASE WHEN COUNT(DISTINCT id_number) = COUNT(*) THEN 'PASS' ELSE 'FAIL' END
+FROM users
+UNION ALL
+SELECT 'Positive Transaction Amounts',
+    CASE WHEN COUNT(*) = 0 THEN 'PASS' ELSE 'FAIL' END
+FROM transactions WHERE amount <= 0;
+
+
+SELECT 'SAMPLE TRANSACTION DATA WITH RELATIONSHIPS' AS '';
+SELECT '==========================================' AS '';
+SELECT
+    t.transaction_id AS Txn_ID,
+    s.full_name AS Sender,
+    IFNULL(r.full_name, 'EXTERNAL') AS Receiver,
+    tc.category_name AS Category,
+    CONCAT('RWF ', FORMAT(t.amount, 2)) AS Amount,
+    t.transaction_status AS Status,
+    DATE_FORMAT(t.created_at, '%Y-%m-%d %H:%i') AS Created_At
+FROM transactions t
+JOIN users s ON t.sender_id = s.user_id
+LEFT JOIN users r ON t.receiver_id = r.user_id
+JOIN transaction_categories tc ON t.category_id = tc.category_id
+ORDER BY t.transaction_id;
+
+SELECT 'FOREIGN KEY INTEGRITY TESTS' AS '';
+SELECT '===========================' AS '';
+SELECT 'Relationship Check' AS 'Test', 'Result' AS 'Status' FROM DUAL
+UNION ALL
+SELECT 'All transactions reference valid senders',
+    CASE WHEN NOT EXISTS (
+        SELECT 1 FROM transactions t
+        LEFT JOIN users u ON t.sender_id = u.user_id
+        WHERE u.user_id IS NULL
+    ) THEN 'PASS' ELSE 'FAIL' END
+UNION ALL
+SELECT 'All transactions reference valid categories',
+    CASE WHEN NOT EXISTS (
+        SELECT 1 FROM transactions t
+        LEFT JOIN transaction_categories tc ON t.category_id = tc.category_id
+        WHERE tc.category_id IS NULL
+    ) THEN 'PASS' ELSE 'FAIL' END
+UNION ALL
+SELECT 'All transaction tags reference valid transactions',
+    CASE WHEN NOT EXISTS (
+        SELECT 1 FROM transaction_tags tt
+        LEFT JOIN transactions t ON tt.transaction_id = t.transaction_id
+        WHERE t.transaction_id IS NULL
+    ) THEN 'PASS' ELSE 'FAIL' END;
