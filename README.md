@@ -30,6 +30,9 @@ The MoMo SMS database manages mobile money transcations with a relational design
 ## Team Logbook link
 https://docs.google.com/spreadsheets/d/1T1PYaiUr_BibOAKgpvWyrgsloJ9IxkUUGLgMesFs5u0/edit?usp=sharing
 
+## Documentation link
+https://github.com/KamiPacifique/Momo-Sms-Data/blob/main/Docs/Documentation.pdf
+
 ## Project Status
 ## Phase 1: Planning & Setup (done)
 - Repository created and collaborators added
