@@ -24,7 +24,7 @@ CREATE TABLE transactions (
     sender_id INT NOT NULL,
     receiver_id INT DEFAULT NULL,
     category_id INT NOT NULL,
-    amount DECIMAL(10, 2) NOT NULL CHECK (amount >= 0),
+    amount DECIMAL(10, 2) NOT NULL,
     currency CHAR(3) DEFAULT 'RWF',
     transaction_type VARCHAR(50),
     transaction_status ENUM('SUCCESS','PENDING','FAILED','REVERSED') NOT NULL DEFAULT 'PENDING',
