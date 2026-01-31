@@ -41,9 +41,12 @@ https://github.com/KamiPacifique/Momo-Sms-Data/blob/main/Docs/Documentation.pdf
 - Architecture diagram designed
 - Scrum board initialized 
 
-## Phase 2: Database design, ERD diagram and JSON file(current)
+## Phase 2: Database design, ERD diagram, and JSON file (done)
 - Draw an ERD diagram 
 - Create a database design and SQL tables
 - Edit the JSON file
+
+## Phase 3: Building and Securing a REST API (current)
+-Setup Instructions
 
 in coming phases we will focus on backend development, data processing, and frontend components. The directory structure will evolve as development progresses.
