@@ -277,3 +277,46 @@ class MomoAPIHandler(BaseHTTPRequestHandler):
                 self._response(404, message="Transaction not found")
         else:
             self._response(404, message="Endpoint not found")
+
+def start_server(port=8000):
+    """Start the API server with HARDCODED data"""
+    server = HTTPServer(('', port), MomoAPIHandler)
+
+    print("\n" + "=" * 60)
+    print("MOBILE MONEY TRANSACTION API")
+    print("=" * 60)
+    print(f"Server: http://localhost:{port}")
+    print(f"Transactions: {len(MomoAPIHandler.transactions_store)}")
+    print("\nENDPOINTS:")
+    print("  GET    /transactions         - List all transactions")
+    print("  GET    /transactions/{id}    - Get specific transaction")
+    print("  POST   /transactions         - Create new transaction")
+    print("  PUT    /transactions/{id}    - Update transaction")
+    print("  DELETE /transactions/{id}    - Delete transaction")
+    print("\nAUTHENTICATION (Basic Auth):")
+
+    # Show the EXACT base64 strings to use
+    print("\nUse these EXACT Authorization headers:")
+    print("-" * 50)
+
+    users = MomoAPIHandler.API_USERS
+    for username, password in users.items():
+        auth_string = f"{username}:{password}"
+        encoded = base64.b64encode(auth_string.encode()).decode()
+        print(f"\nUsername: {username}")
+        print(f"Password: {password}")
+        print(f"Full Header: Authorization: Basic {encoded}")
+        print(f"cURL Command:")
+        print(f'  curl -X GET "http://localhost:{port}/transactions" \\')
+        print(f'    -H "Authorization: Basic {encoded}"')
+
+    print("\n" + "=" * 60)
+
+    try:
+        server.serve_forever()
+    except KeyboardInterrupt:
+        print("\nServer stopped.")
+
+
+if __name__ == "__main__":
+    start_server(8000)
