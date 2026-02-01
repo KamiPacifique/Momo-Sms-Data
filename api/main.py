@@ -148,3 +148,132 @@ class MomoAPIHandler(BaseHTTPRequestHandler):
             return json.loads(body)
         except:
             return None
+        def do_GET(self):
+        """Handle GET requests"""
+        # Authentication check
+        if not self._verify_auth():
+            self._response(401, message="Authentication failed")
+            return
+
+        resource, item_id = self._parse_request()
+
+        if resource == 'transactions':
+            if item_id:
+                # GET single transaction
+                if item_id in self.transactions_store:
+                    self._response(200, self.transactions_store[item_id])
+                else:
+                    self._response(404, message="Transaction not found")
+            else:
+                # GET all transactions
+                all_tx = list(self.transactions_store.values())
+                self._response(200, {
+                    "count": len(all_tx),
+                    "transactions": all_tx
+                })
+        else:
+            self._response(404, message="Endpoint not found")
+
+    def do_POST(self):
+        """Handle POST requests - Create new transaction"""
+        if not self._verify_auth():
+            self._response(401, message="Authentication failed")
+            return
+
+        resource, _ = self._parse_request()
+
+        if resource == 'transactions':
+            data = self._get_request_body()
+            if not data:
+                self._response(400, message="Invalid JSON data")
+                return
+
+            # Validate required fields
+            required = ['amount', 'transaction_type', 'sender', 'receiver']
+            for field in required:
+                if field not in data or not str(data[field]).strip():
+                    self._response(400, message=f"Missing field: {field}")
+                    return
+
+            try:
+                amount = float(data['amount'])
+            except:
+                self._response(400, message="Invalid amount format")
+                return
+
+            # Create transaction with HARDCODED ID generation
+            tx_id = str(self.next_id)
+            self.next_id += 1
+
+            transaction = {
+                "id": tx_id,
+                "amount": amount,
+                "transaction_type": data['transaction_type'],
+                "sender": data['sender'],
+                "receiver": data['receiver'],
+                "timestamp": data.get('timestamp', datetime.now().isoformat()),
+                "currency": data.get('currency', 'RWF'),
+                "status": data.get('status', 'pending'),
+                "reference": data.get('reference', f"TXN{tx_id}")
+            }
+
+            # Store transaction
+            self.transactions_store[tx_id] = transaction
+
+            self._response(201, transaction, "Transaction created")
+        else:
+            self._response(404, message="Endpoint not found")
+
+    def do_PUT(self):
+        """Handle PUT requests - Update transaction"""
+        if not self._verify_auth():
+            self._response(401, message="Authentication failed")
+            return
+
+        resource, item_id = self._parse_request()
+
+        if resource == 'transactions' and item_id:
+            if item_id not in self.transactions_store:
+                self._response(404, message="Transaction not found")
+                return
+
+            data = self._get_request_body()
+            if not data:
+                self._response(400, message="Invalid JSON data")
+                return
+
+            # Update transaction
+            current = self.transactions_store[item_id]
+            updatable = ['amount', 'transaction_type', 'sender', 'receiver',
+                         'currency', 'status', 'timestamp']
+
+            for field in updatable:
+                if field in data:
+                    if field == 'amount':
+                        try:
+                            current[field] = float(data[field])
+                        except:
+                            pass
+                    else:
+                        current[field] = data[field]
+
+            self._response(200, current, "Transaction updated")
+        else:
+            self._response(404, message="Endpoint not found")
+
+    def do_DELETE(self):
+        """Handle DELETE requests"""
+        if not self._verify_auth():
+            self._response(401, message="Authentication failed")
+            return
+
+        resource, item_id = self._parse_request()
+
+        if resource == 'transactions' and item_id:
+            if item_id in self.transactions_store:
+                del self.transactions_store[item_id]
+                self._response(200, message="Transaction deleted")
+            else:
+                self._response(404, message="Transaction not found")
+        else:
+            self._response(404, message="Endpoint not found")
