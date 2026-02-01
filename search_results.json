@@ -1,0 +1,11 @@
+{
+  "dataset_size": 50,
+  "test_iterations": 20,
+  "linear_search_avg_ms": 0.0030280000000000003,
+  "dictionary_lookup_avg_ms": 0.0005652,
+  "speedup_factor": 5.357395612172683,
+  "time_complexity": {
+    "linear": "O(n)",
+    "dictionary": "O(1)"
+  }
+}
