@@ -35,6 +35,52 @@ https://docs.google.com/spreadsheets/d/1azmRzRzOGVMqhv7s2NPgLFo4FMgL9ayGmC4vb23S
 ## Documentation link
 https://github.com/KamiPacifique/Momo-Sms-Data/blob/main/Docs/Documentation.pdf
 
+## Setup Instructions 
+
+1. Clone the project 
+    - In your terminal input: git clone https://github.com/KamiPacifique/Momo-Sms-Data.git
+    -Press Enter
+2. Open the project folder 
+    - Type cd Momo-Sms-Data
+    - Press Enter 
+3. Install required packages (if needed)
+    - Type: pip install -r requirements.txt
+    - Press Enter 
+4. Start the server
+    - Type: python3 momo_api.py
+    - Press Enter
+    - You should see a message saying the server is running
+5. The API is ready!
+    - Open your browser and go to: http://localhost:8000
+    - Or use Postman or any API testing tool
+
+### Login Information 
+| Username | Password |
+|----------|----------|
+|Admin     |admin123  |
+|user      |user456   |
+|test      |test789   |
+
+Use these to access the API. 
+
+### API Endpoints
+The API provides full CRUD operations for transaction management:
+
+- GET /transactions - List all transactions
+- GET /transactions/{id} - Get specific transaction details
+- POST /transactions - Create new transaction (requires: amount, transaction_type, sender, receiver)
+- PUT /transactions/{id} - Update existing transaction
+- DELETE /transactions/{id} - Delete transaction
+
+Required fields for creating transactions: amount, transaction_type, sender, receiver
+Optional fields: currency (default: RWF), status (default: pending), timestamp, reference
+
+Testing tools: Use cURL, Postman, Python requests, or any HTTP client with Basic Authentication.
+
+### Configuration 
+Change port: Edit momo_api.py and modify start_server(8080) to desired port
+Add users: Edit API_USERS dictionary in momo_api.py
+
 ## Project Status
 ## Phase 1: Planning & Setup (done)
 - Repository created and collaborators added
