@@ -28,12 +28,13 @@ https://github.com/users/KamiPacifique/projects/2/views/1
 The MoMo SMS database manages mobile money transcations with a relational design. It includes users, transactions categories, transctions, tags, transction-tags, and system logs. Users and transactions are linked via foreign keys, categories classify transaction types, and tags allow flexible labeling. Constrints enforce valid formats, positive amounts, and controlled statuses, while indexes improve query performance. System logs ensure auditability, making the design robust, consistent, and traceable.
 
 ## Team Logbook link
-- Database Design and Implementation: https://docs.google.com/spreadsheets/d/1T1PYaiUr_BibOAKgpvWyrgsloJ9IxkUUGLgMesFs5u0/edit?usp=sharing
-- Building and Securing a REST API:
+- **Database Design and Implementation:** https://docs.google.com/spreadsheets/d/1T1PYaiUr_BibOAKgpvWyrgsloJ9IxkUUGLgMesFs5u0/edit?usp=sharing
+- **Building and Securing a REST API:**
 https://docs.google.com/spreadsheets/d/1azmRzRzOGVMqhv7s2NPgLFo4FMgL9ayGmC4vb23SEgU/edit?usp=sharing 
 
 ## Documentation link
-https://github.com/KamiPacifique/Momo-Sms-Data/blob/main/Docs/Documentation.pdf
+- **Database Design and Implementation**: https://github.com/KamiPacifique/Momo-Sms-Data/blob/main/Docs/Documentation.pdf
+- **Building and Securing a Rest API**: https://github.com/KamiPacifique/Momo-Sms-Data/blob/main/Docs/Building%20and%20securing%20rest_api.pdf
 
 ## Setup Instructions 
 
